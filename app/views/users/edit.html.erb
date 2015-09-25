@@ -1,0 +1,45 @@
+<% if current_user == @user %>
+  <h1>Edit user profile</h1>
+  <div class="row">
+  	<div class="col-md-6 col-md-offset-3">
+
+  <%= form_for(@user) do |f| %>
+
+  <% if @user.errors.present? %>
+      <div class="alert alert-danger">
+        <%= alert %>
+        <ul>
+          <% @user.errors.full_messages.each do |full_message| %>
+            <li>
+              <%= full_message %>
+            </li>
+          <% end %> 
+        </ul>
+      </div>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, :size => "20x1",class: 'form-control'%>
+  <br>
+  <%= f.label :email %>
+  <%= f.text_field :email, class: 'form-control'%>
+  <br>
+  <%= f.label :age %>
+  <%= f.number_field :age, class: 'form-control'%>
+  <br>
+  <%= f.label :comment %>
+  <br>
+  <%= f.text_area :comment, :size => "30x2", class: 'form-control'%>
+  <br>
+  <%= f.label :website %>
+  <br>
+  <%= f.text_field :website, :size => "30x1", class: 'form-control'%>
+  <br>
+  <%= f.submit class: "btn btn-sm btn-primary" %>
+
+  <% end %>
+  	</div>
+  </div>
+<% else %>
+<h1> 編集する権限がありません </h1>
+<% end %>
