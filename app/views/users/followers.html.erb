@@ -1,0 +1,21 @@
+<div class = "row">
+  <%= render 'aside' %>
+  <div class = "col-md-8">
+    <div class = "follower-list">
+      <h2>Follower List</h2>
+      <% @followers.each do |user| %>
+      <ul style = "font-size: 14px">
+        <% link_to gravatar_for(user, size: 50), user %>
+        <span class = "user"><%= link_to user.name,user%></span>
+        <span class = "comment" style = "font-size: 14px">
+          <% if user.comment %>
+           : <%= user.comment %>
+           <% else %>
+           <span class = "comment" >:プロフィールにまだコメントを登録していません</span>
+           <% end %>
+        </span>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
