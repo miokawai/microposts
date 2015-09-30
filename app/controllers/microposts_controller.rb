@@ -18,7 +18,9 @@ class MicropostsController < ApplicationController
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
   end
-  
+def post_params
+    params.require(:post).permit(:body).merge(user_id: current_user.id)
+end
 private
 def microposts_parmas
   params.require(:micropost).permit(:content)
