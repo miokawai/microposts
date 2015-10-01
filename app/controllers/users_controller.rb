@@ -48,7 +48,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @followers = @user.follower_users
   end
-  
+  def index
+    @users = User.page(params[:page]).per(10).order(:id)
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :comment, :website)
