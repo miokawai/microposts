@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     
   def show # 追加
    @user = User.find(params[:id])
-   @microposts = @user.microposts
+   @microposts = @user.microposts.page(params[:page]).per(5)
   end
   
   def new
@@ -51,7 +51,6 @@ class UsersController < ApplicationController
   def index
     @users = User.page(params[:page]).per(10).order(:id)
   end
-
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :comment, :website)
