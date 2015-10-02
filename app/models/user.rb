@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
                   format: { with: VALID_EMAIL_REGEX },
                    uniqueness: { case_sensitive: false }
   has_secure_password
+  validates :age, presence:false,numericality: {only_integer:true, greater_than_or_equal_to: 0,less_than: 100}, on: :update
+  validates :comment, presence: false, length: { maximum:100, minimum:0 }, on: :update
+  VALID_EMAIL_REGEX = /\Ahttp/
   has_many :microposts
   has_many :following_relationships, class_name: "Relationship",
                                      foreign_key: "follower_id",
@@ -27,6 +30,15 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
+<<<<<<< HEAD
   
+=======
+  def feed_items
+    Micropost.where(user_id: following_user_ids + [self.id])
+  end
+  def permit_product_params
+    params.require(:product).permit(:image)
+  end
+>>>>>>> master
 end
 

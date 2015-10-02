@@ -1,4 +1,5 @@
 <div class="row">
+  <%= render 'aside' %>
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
@@ -16,12 +17,11 @@
   <ol class="microposts">
   
   <%= render @microposts %>
-  
   </ol>
   <% end %>
   </div>
   </div>
-
+<center><%= paginate(@microposts) %></center>
 <div class="container">
   <h3> Profile </h3>
   <div class="table-responsive">
@@ -59,3 +59,4 @@
    <% end %>
    </center>
    </div>
+   
