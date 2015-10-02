@@ -33,5 +33,8 @@ class User < ActiveRecord::Base
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
   end
+  def permit_product_params
+    params.require(:product).permit(:image)
+  end
 end
 
