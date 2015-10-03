@@ -39,13 +39,7 @@ class UsersController < ApplicationController
     end
   end
   
-<<<<<<< HEAD
-
-  
-  def edit
-=======
   def followings
->>>>>>> master
     @user = User.find(params[:id])
     @followings = @user.following_users
   end
@@ -54,6 +48,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @followers = @user.follower_users
   end
+  
   def index
     @users = User.page(params[:page]).per(10).order(:id)
   end
