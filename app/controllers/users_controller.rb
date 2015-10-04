@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
-  def edit
-    unless  logged_in?
-     return redirect_to root_url
-   end
-   @user = User.find(params[:id])
- end
-    
+  
   def show # 追加
    @user = User.find(params[:id])
    @microposts = @user.microposts.page(params[:page]).per(5)
@@ -39,6 +33,13 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    unless  logged_in?
+     return redirect_to root_url
+  end
+   @user = User.find(params[:id])
+ end
+  
   def followings
     @user = User.find(params[:id])
     @followings = @user.following_users
@@ -47,10 +48,6 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @followers = @user.follower_users
-  end
-  
-  def index
-    @users = User.page(params[:page]).per(10).order(:id)
   end
   
   private

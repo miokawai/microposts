@@ -10,9 +10,8 @@ class User < ActiveRecord::Base
   validates :comment, presence: false, length: { maximum:100, minimum:0 }, on: :update
   VALID_EMAIL_REGEX = /\Ahttp/
   has_many :microposts
-  has_many :following_relationships, class_name: "Relationship",
-                                     foreign_key: "follower_id",
-                                   dependent: :destroy
+  
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id",dependent: :destroy
   has_many :following_users, through: :following_relationships, source: :followed
   #他のユーザーをフォローする
   def follow(other_user)
@@ -23,6 +22,9 @@ class User < ActiveRecord::Base
     following_relationships.find_by(followed_id: other_user.id).destroy
   end
   #あるユーザーをフォローしているかどうか？
+  def following?(other_user)
+    following_users.include?(other_user)
+  end
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
   end
