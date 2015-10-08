@@ -34,11 +34,6 @@
   <br>
   <%= f.text_field :website, :size => "30x1", class: 'form-control'%>
   <br>
-  <% if @user.image? %>
-　　<%= image_tag @user.image.thumb.url %>
-　<% else %>
-　　<%= image_tag 'noimage.gif' %>
-　<% end %>
   <%= f.submit class: "btn btn-sm btn-primary" %>
 
   <% end %>
